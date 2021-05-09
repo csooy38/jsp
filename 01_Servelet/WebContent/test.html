@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// 1단계 : Ex05.jsp 페이지에서 넘어온 데이터들을 처리해 주자.
+	String hakbun = request.getParameter("hakbun");
+	String name = request.getParameter("name");
+	String phone = request.getParameter("phone");
+	
+	// 체크박스는 배열 형태로 저장되어야 하므로 
+	// getParameterValues()를 활용한다. 반환형은 String[] 배열타입.
+	String[] major = request.getParameterValues("major");
+	
+	// 2단계 : 웹 브라우저에 요청한 결과를 화면에 보여 주자.
+	response.setContentType("text/html charset=UTF-8");
+	
+	PrintWriter out = response.getWriter();
+	
+	out.println("<html>");
+	out.println("<body>");
+	out.println("<h2>");
+	out.println("학번 : " + hakbun + "<br>");
+	out.println("이름 : " + name + "<br>");
+	out.println("전공과목 : ");
+	
+	// 배열로 저장된 전공과목 출력
+	for(int i=0; i<major.length; i++) {
+		out.println(major[i] + "&nbsp;&nbsp;&nbsp;");
+	}
+	
+	out.println("연락처 : " + phone);
+	out.println("</h2>");
+	out.println("</body>");
+	out.println("</html>");
+}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
